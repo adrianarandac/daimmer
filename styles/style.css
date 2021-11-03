@@ -1,0 +1,247 @@
+body {
+    background: linear-gradient(100deg, #B91646, #da92a8);
+    width: 100%;
+    margin: 0;
+    font-family: Poppins;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* INTRO SCREEN */
+.introScreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding-top: 30vh;
+}
+.input-name {
+    background-color: #FBF3E4;
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    border-radius: 50px;
+}
+
+.buttonPlay {
+    
+    background: none;
+	outline: none;
+    border: none;
+
+}
+
+.inputBox {
+    width: 200px;
+    outline: none;
+    border: 0px;
+    background-color: transparent;
+    font-size: 18px;
+    text-align: center;
+}
+
+.inputBox:focus::placeholder {
+    color: transparent;
+    transition: 0.420s ease;
+}
+
+h1{
+    color: #fffdf8;
+    font-size: 5em;
+    margin-bottom: 20px;
+    font-weight: bold;
+
+    overflow: hidden;
+
+}
+
+.pressEnterText {
+    color: #fffdf8;
+    font-size: 10px;
+    visibility: visible;
+}
+
+
+/* TUTORIAL SCREEN */
+
+
+#tutorialScreen {
+    padding: 100 20;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tutorial-title {
+    color: #fffdf8;
+    font-size: 3em;
+    margin-bottom: 90px;
+}
+
+.tutorial-text {
+    display: flex;
+    flex-direction: column;
+    margin-right: 200px;
+    width: 45%;
+}
+
+.tutorial-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+h4 {
+    color: #fffdf8;
+    font-size: 1.5em;
+    margin-bottom: 0px;
+    margin-top: 5px;
+}
+
+li {
+    color: #FBF3E4;
+    font-size: 0.7em;
+    padding: 10 0;
+}
+.bg-black {
+    background:linear-gradient(310deg, #000000, #474747);
+    border: 2px solid rgb(78, 78, 78);
+}
+
+.bg-white {
+    background:linear-gradient(130deg, #808080, #f3f3f3);
+    border: 2px solid #b3b3b3;
+}
+
+
+.tutorial-tile {
+    border-radius: 1px;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    margin: 5px;
+}
+
+.letter {
+    position: absolute;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5em;
+    color: whitesmoke;
+}
+
+
+.lets-play-button {
+    
+    width: 300px;
+    height: 100px;
+    align-self: center;
+    margin-top: 50px;
+    font-size: 1.5em;
+}
+
+
+/* ACTUAL GAME */
+
+
+.grid-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 95vh;
+    position: relative;
+}
+
+.tile {
+    background-color: FBF3E4;
+    margin: 5px;
+    border-radius: 1px;
+    width: 170px;
+    height: 170px;
+    position: relative;
+}
+
+.tile-text {
+    position: absolute;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.7em;
+    color: whitesmoke;
+}
+
+#score {
+    color: white;
+}
+
+.play-button {
+    position: absolute;
+    align-self: center;
+    justify-self: center;
+    background: #FBF3E4;
+	outline: none;
+    border: none;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 2em;
+    border: 1px rgb(177, 177, 177) solid;
+    color: #141414;
+    box-shadow: 0 10px 10px rgb(0 0 0 / 0.5);
+}
+
+.nav{
+    color: #FBF3E4;
+    width: 75%;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-evenly;
+    padding: 30px 0px;
+}
+
+.nav div {
+    font-size: 1.5em;
+}
+
+
+/* LOST SCREEN */
+
+.lost-screen {
+    padding: 20%;
+    font-size: 0.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.you-lost {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 8em;
+}
+
+.try-again {
+    width: 100px;
+    height: 100px;
+    width: 250px;
+    border-radius: 10%;
+}
