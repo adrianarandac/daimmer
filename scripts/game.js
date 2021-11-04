@@ -16,8 +16,8 @@ class Game {
       this.whiteTiles = [];
       this.mouse = false;
       this.countdown = 20;
-      this.failSound = new Audio("/Daimmer/sounds/failed.wav")
-      this.soundArray = new Array ("/Daimmer/sounds/1.wav", "/Daimmer/sounds/2.wav", "/Daimmer/sounds/3.wav", "/Daimmer/sounds/3.wav", "/Daimmer/sounds/4.wav", "/Daimmer/sounds/5.wav")
+      this.failSound = new Audio("./sounds/failed.wav")
+      this.soundArray = new Array ("./sounds/1.wav", "./sounds/2.wav", "./sounds/3.wav", "./sounds/3.wav", "./sounds/4.wav", "./sounds/5.wav")
       this.correctSound = new Audio();
       this.levelUp = 0;
       this.intervalId = null
