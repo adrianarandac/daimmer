@@ -136,7 +136,10 @@ class Game {
           
   extraTime(){
     this.levelUp++
-    if (this.levelUp === 25) {this.levelUpSound.play; this.countdown += 20; this.levelUp = 0}
+    if (this.levelUp === 25) {this.levelUpSound.volume = 0.3;
+                              this.levelUpSound.play();
+                              this.countdown += 20;
+                              this.levelUp = 0}
   }
           
   updateHighest(){

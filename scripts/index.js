@@ -18,9 +18,12 @@ let buildDom = (html) => {
             <p class="pressEnterText">press Enter</p>
         </div> 
           `);
+    
     const pressEnterKey = document.querySelector(".inputBox");
     pressEnterKey.addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
+
+      if (event.keyCode === 13) {
+            myAudio.play();
             playerName = pressEnterKey.value
             event.preventDefault();
             buildTutorialScreen();
@@ -126,4 +129,19 @@ let buildDom = (html) => {
   // When the window loads, then we will run the "runGameScreens" function
   // "load" waits for the html and JS
   window.addEventListener("load", buildSplashScreen);
+
+  myAudio = new Audio("./sounds/takingtrips.mp3");
+  myAudio.volume = 0.4; 
+if (typeof myAudio.loop == 'boolean')
+{
+    myAudio.loop = true;
+}
+else
+{
+    myAudio.addEventListener('ended', function() {
+        this.currentTime = 0;
+        this.play();
+    }, false);
+}
+
   
