@@ -41,9 +41,9 @@ let buildDom = (html) => {
                     <div class="tutorial-text">
                         <h4><u>DAIMMER</u> is a 4x4 grid game<br> where you'll have to:<h4>
                         <ol>
-                            <li><u>Place the cursor</u> over the black tile (but don't click!)</li>
-                            <li>Once you're over the tile <u>press the key displayed</u> on it.</li>
-                            <li>Move on to the next tile and <u>get as much as you can!</u></li>
+                            <li><u>Place the cursor</u> over the black tile (no need to click!)</li>
+                            <li>Once you're over the tile <u>press the key displayed</u> on it and <u>move to the next one</u>.</li>
+                            <li><u>Get as many as you can before the time finishes!</u></li>
                         </ol>
                     </div>
                     <div class="tutorial-tile tutorial-one bg-black bg-white">
