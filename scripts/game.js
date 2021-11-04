@@ -16,7 +16,8 @@ class Game {
       this.whiteTiles = [];
       this.mouse = false;
       this.countdown = 20;
-      this.failSound = new Audio("./sounds/failed.wav")
+      this.failSound = new Audio("./sounds/failed.wav");
+      this.levelUpSound = new Audio("./sounds/levelup.mp3");
       this.soundArray = new Array ("./sounds/1.wav", "./sounds/2.wav", "./sounds/3.wav", "./sounds/3.wav", "./sounds/4.wav", "./sounds/5.wav")
       this.correctSound = new Audio();
       this.levelUp = 0;
@@ -135,7 +136,7 @@ class Game {
           
   extraTime(){
     this.levelUp++
-    if (this.levelUp === 30) {this.countdown += 30; this.levelUp = 0}
+    if (this.levelUp === 25) {this.levelUpSound.play; this.countdown += 20; this.levelUp = 0}
   }
           
   updateHighest(){
