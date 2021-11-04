@@ -245,3 +245,8 @@ li {
     width: 250px;
     border-radius: 10%;
 }
+
+.final-score {
+    color: #f3f3f3;
+    font-size: 3em;
+}

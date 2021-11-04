@@ -1,7 +1,5 @@
-const game = new Game(); 
-
 // General function that will update the HTML content dynamically
-const buildDom = (html) => {
+let buildDom = (html) => {
     const main = document.querySelector("main");
     main.innerHTML = html;
   };
@@ -32,7 +30,7 @@ const buildDom = (html) => {
 
 
   // TUTORIAL SCREEN 1
-  const buildTutorialScreen = () => {
+  let buildTutorialScreen = () => {
     buildDom(`
             <div id="tutorialScreen">
                 <h3 class="tutorial-title" >Let's learn how to play, ${playerName}:</h3>
@@ -66,7 +64,7 @@ const buildDom = (html) => {
 
 
   // Second Screen => Game Screen
-  const buildGameScreen = () => {
+  let buildGameScreen = () => {
     
     buildDom(`
     <div class="nav">
@@ -95,26 +93,29 @@ const buildDom = (html) => {
     </section>
     `);
 
-    
-    
-    game.start();
+    if (typeof game == undefined){
+              let game = new Game();
+              game.start();}
+    else {delete game;
+          let game = new Game();
+          game.start()} 
 
   };
 
 
 
 
-  const buildGameOver = () => {
-
+  let buildGameOver = () => {
 
     buildDom(`
       <div class="lost-screen">
         <h1 class="you-lost">GAME OVER, ${playerName.toUpperCase()}</h1>
+        <h2 class="final-score">Your score was: ${printedScore}</h2>
         <button class="try-again">Do you think you can do better?</button>
       </div>
           `);
-  
-    const restartButton = document.querySelector("button");
+
+    let restartButton = document.querySelector("button");
     restartButton.addEventListener("click", buildGameScreen);
   };
 

@@ -4,6 +4,8 @@ var scoreString = localStorage.getItem(SAVE_SCORE)
 if (scoreString == null) highestScore = 0;
 else {highestScore = parseInt(scoreString)}
 
+var printedScore = 0
+
 
 class Game {
   constructor() {
@@ -17,16 +19,14 @@ class Game {
       this.failSound = new Audio("/Daimmer/sounds/failed.wav")
       this.soundArray = new Array ("/Daimmer/sounds/1.wav", "/Daimmer/sounds/2.wav", "/Daimmer/sounds/3.wav", "/Daimmer/sounds/3.wav", "/Daimmer/sounds/4.wav", "/Daimmer/sounds/5.wav")
       this.correctSound = new Audio();
-      this.levelUp = 0
+      this.levelUp = 0;
+      this.intervalId = null
       
     }
     
     start() {
       // GET RANDOM INDEX TO SHUFFLE CARDS TO BLACK
-      console.log("start() starts");
-      console.log("Before this.tiles gets the Array.from :", this.tiles);
-      this.tiles = Array.from(document.getElementsByClassName("tile"));
-      console.log("After this.tiles gets the Array.from :", this.tiles);
+    this.tiles = Array.from(document.getElementsByClassName("tile"));
 
     let randomNumbers = [];
     let randNumb = null;
@@ -64,15 +64,14 @@ class Game {
   }
 
   startCountdown(){
-    console.log("startCountdown() starts");
-    console.log(this.tiles);
 
     document.querySelector(".play-button").remove
     let countdownText = document.querySelector(".timer");
-    setInterval(() => {
+
+    this.intervalId = setInterval(() => {
       this.countdown--;
       countdownText.innerText = `TIMER: ${this.countdown}`;
-      if (this.countdown === 0){this.failSound.play(); buildGameOver();}
+      if (this.countdown === 0){clearInterval(this.intervalId), this.failSound.play(); buildGameOver(); this.killEventListener}
     }, 1000);
     
     document.querySelector(".grid-container").removeChild(document.querySelector(".play-button"));
@@ -97,16 +96,11 @@ class Game {
   }
           
   addKeyboardOn(){
-    console.log("addKeyBoardOn() starts and this.tiles equals:", this.tiles);
     window.addEventListener("keypress", this.keyboardFunction)
   }
 
-  keyboardFunction (event){
-    console.log("hello from inside keyboardFunction()");    
+  keyboardFunction = (event) => {
       let checker = false;
-  
-      console.log(this.tiles);
-  
       this.tiles.forEach((tile) => {
         if (this.mouse === true && String.fromCharCode(event.keyCode).toUpperCase() ===
         tile.querySelector("p").innerText &&
@@ -126,12 +120,16 @@ class Game {
           )
   
       if (checker){
+
         this.pointsCounter++;
         this.extraTime();
+        console.log(document, document.querySelector(".score"));
         document.querySelector(".score").innerText = `SCORE: ${this.pointsCounter}`;
         this.updateHighest();}
+        
       else {
-              this.failSound.play();
+        clearInterval(this.intervalId);
+        this.failSound.play();
         this.gameOver()};
     }
           
@@ -145,9 +143,9 @@ class Game {
     if (this.pointsCounter > highestScore){
       highestScore = this.pointsCounter;
       localStorage.setItem(SAVE_SCORE, highestScore)
-      record.innerText = `RECORD: ${highestScore}`
-      console.log(object);}
+      record.innerText = `RECORD: ${highestScore}`;}
   }
+  
             
   newBlackTile(){
     let randomWhiteTileIndex = Math.floor(Math.random()*this.whiteTiles.length);
@@ -158,7 +156,13 @@ class Game {
     this.whiteTiles.splice(randomWhiteTileIndex, 1);
   }
 
+  killEventListener (){
+    window.removeEventListener("keypress", this.keyboardFunction)        
+  }
+
   gameOver(){
-      buildGameOver()
+    printedScore = this.pointsCounter;
+    this.killEventListener();
+    buildGameOver();
   }
 }
