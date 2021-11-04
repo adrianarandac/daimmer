@@ -94,10 +94,10 @@ const buildDom = (html) => {
     <button class="play-button">PLAY</button>
     </section>
     `);
+
+    
     
     game.start();
-    game.addMouseOn();
-    game.addKeyboardOn();
 
   };
 
