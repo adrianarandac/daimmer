@@ -6,8 +6,6 @@ let secondTutorialTile = document.querySelector(".tutorial-two")
 const letters = ["Q", "W", "E", "A", "S", "D"];
 const ui = { mouse: false, key: null };
 
-// CHECKS IF MOUSE IS ON
-
 tutorialTile.forEach((tile) => {
   tile.addEventListener("mouseover", (event) => {
     console.log("Line 9 on");
@@ -23,8 +21,6 @@ tutorialTile.forEach((tile) => {
   });
 });
 
-
-// STARTING POINT
 
 const startTutorial = () => {
     firstTutorialTile.querySelector("p").innerText = letters[Math.floor(Math.random()*letters.length)];
@@ -45,9 +41,7 @@ tutorialTile.forEach((tile) => {
                 tutorialTile.forEach(word =>{ word.classList.toggle("bg-white");
                 word.querySelector("p").innerText = letters[Math.floor(Math.random()*letters.length)]})
                 tile.querySelector("p").innerText = "";
-                // secondTutorialTile.classList.toggle("bg-white");
-                // secondTutorialTile.querySelector("p").innerText = letters[Math.floor(Math.random()*letters.length)];               
-            }}                 
+            }}
     );
 });
     

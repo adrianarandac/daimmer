@@ -1,6 +1,6 @@
 body {
-    background: linear-gradient(100deg, #B91646, #da92a8);
-    width: 100%;
+    /*width: 100vw;*/
+    background: linear-gradient(100deg, #B91646, #da92a8) no-repeat fixed;
     margin: 0;
     font-family: Poppins;
 }
@@ -12,7 +12,6 @@ body {
     align-items: center;
 }
 
-/* INTRO SCREEN */
 .introScreen {
     display: flex;
     flex-direction: column;
@@ -68,10 +67,6 @@ h1{
     visibility: visible;
 }
 
-
-/* TUTORIAL SCREEN */
-
-
 #tutorialScreen {
     padding: 100 20;
     display: flex;
@@ -121,7 +116,6 @@ li {
     border: 2px solid #b3b3b3;
 }
 
-
 .tutorial-tile {
     border-radius: 1px;
     width: 200px;
@@ -152,17 +146,10 @@ li {
     font-size: 1.5em;
 }
 
-
-/* ACTUAL GAME */
-
-
 .grid-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 95vh;
-    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    max-width: 100vw;
 }
 
 .tile {
@@ -220,9 +207,6 @@ li {
     font-size: 1.5em;
 }
 
-
-/* LOST SCREEN */
-
 .lost-screen {
     padding: 17%;
     font-size: 0.5em;
@@ -251,4 +235,20 @@ li {
 .final-score {
     color: #f3f3f3;
     font-size: 5em;
+}
+
+.speaker-icon{
+    position:absolute;
+    bottom:0;
+    right:0;
+    padding-bottom: 15px;
+    padding-right: 15px;
+    cursor: pointer;
+}
+
+.disable-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }

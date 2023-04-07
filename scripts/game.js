@@ -1,8 +1,8 @@
-var highestScore = localStorage.getItem(SAVE_SCORE);
-var SAVE_SCORE = "highestScore"
-var scoreString = localStorage.getItem(SAVE_SCORE)
-if (scoreString == null) highestScore = 0;
-else {highestScore = parseInt(scoreString)}
+var daimmerHighestScore = localStorage.getItem(DAIMMER_HIGHEST_SCORE);
+var DAIMMER_HIGHEST_SCORE = "daimmerHighestScore"
+var scoreString = localStorage.getItem(DAIMMER_HIGHEST_SCORE)
+if (scoreString == null) daimmerHighestScore = 0;
+else {daimmerHighestScore = parseInt(scoreString)}
 
 var printedScore = 0
 
@@ -15,17 +15,17 @@ class Game {
       this.blackTiles = [];
       this.whiteTiles = [];
       this.mouse = false;
-      this.countdown = 20;
+      this.countdown = 30;
       this.failSound = new Audio("./sounds/failed.wav");
       this.levelUpSound = new Audio("./sounds/levelup.mp3");
-      this.soundArray = new Array ("./sounds/1.wav", "./sounds/2.wav", "./sounds/3.wav", "./sounds/3.wav", "./sounds/4.wav", "./sounds/5.wav")
+      this.soundArray = ["./sounds/1.wav", "./sounds/2.wav", "./sounds/3.wav", "./sounds/3.wav", "./sounds/4.wav", "./sounds/5.wav"]
       this.correctSound = new Audio();
       this.levelUp = 0;
       this.intervalId = null
       
-    }
-    
-    start() {
+    };
+
+  start() {
       // GET RANDOM INDEX TO SHUFFLE CARDS TO BLACK
     this.tiles = Array.from(document.getElementsByClassName("tile"));
 
@@ -62,7 +62,7 @@ class Game {
       this.startCountdown();
     })
 
-  }
+  };
 
   startCountdown(){
 
@@ -79,33 +79,33 @@ class Game {
     this.addKeyboardOn();
     this.addMouseOn();
 
-  }
+  };
 
   addMouseOn() {
     //TRACK WHEN MOUSE IS ON
     this.tiles.forEach((tile) => {
-      tile.querySelector("p").addEventListener("mouseover", (event) => {
+      tile.querySelector("p").addEventListener("mouseover", () => {
         this.mouse = true;
         tile.setAttribute("data-mouseover", true);
       })});
       //TRACK WHEN MOUSE IS OFF
       this.tiles.forEach((tile) => {
-        tile.querySelector("p").addEventListener("mouseleave", (event) => {
+        tile.querySelector("p").addEventListener("mouseleave", () => {
           this.mouse = false;
           tile.removeAttribute("data-mouseover");
         })})
-  }
+  };
           
   addKeyboardOn(){
     window.addEventListener("keypress", this.keyboardFunction)
-  }
+  };
 
   keyboardFunction = (event) => {
       let checker = false;
       this.tiles.forEach((tile) => {
         if (this.mouse === true && String.fromCharCode(event.keyCode).toUpperCase() ===
         tile.querySelector("p").innerText &&
-        tile.getAttribute("data-mouseover") == "true"
+        tile.getAttribute("data-mouseover") === "true"
         ) {
           this.correctSound.src = this.soundArray[Math.floor(Math.random()*this.soundArray.length)];
           this.correctSound.play();
@@ -131,25 +131,24 @@ class Game {
       else {
         clearInterval(this.intervalId);
         this.failSound.play();
-        this.gameOver()};
-    }
+        this.gameOver()}
+    };
           
   extraTime(){
     this.levelUp++
-    if (this.levelUp === 25) {this.levelUpSound.volume = 0.3;
+    if (this.levelUp === 50) {this.levelUpSound.volume = 0.3;
                               this.levelUpSound.play();
                               this.countdown += 20;
                               this.levelUp = 0}
-  }
+  };
           
   updateHighest(){
     let record = document.querySelector(".highest");
-    if (this.pointsCounter > highestScore){
-      highestScore = this.pointsCounter;
-      localStorage.setItem(SAVE_SCORE, highestScore)
-      record.innerText = `RECORD: ${highestScore}`;}
-  }
-  
+    if (this.pointsCounter > daimmerHighestScore){
+      daimmerHighestScore = this.pointsCounter;
+      localStorage.setItem(DAIMMER_HIGHEST_SCORE, daimmerHighestScore)
+      record.innerText = `RECORD: ${daimmerHighestScore}`;}
+  };
             
   newBlackTile(){
     let randomWhiteTileIndex = Math.floor(Math.random()*this.whiteTiles.length);
@@ -158,15 +157,15 @@ class Game {
     randomWhiteTile.querySelector("p").innerText = this.letters[Math.floor(Math.random()*this.letters.length)];
     this.blackTiles.push(randomWhiteTile);
     this.whiteTiles.splice(randomWhiteTileIndex, 1);
-  }
+  };
 
   killEventListener (){
     window.removeEventListener("keypress", this.keyboardFunction)        
-  }
+  };
 
   gameOver(){
     printedScore = this.pointsCounter;
     this.killEventListener();
     buildGameOver();
-  }
+  };
 }
