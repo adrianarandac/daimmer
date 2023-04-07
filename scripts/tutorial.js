@@ -7,7 +7,7 @@ const letters = ["Q", "W", "E", "A", "S", "D"];
 const ui = { mouse: false, key: null };
 
 tutorialTile.forEach((tile) => {
-  tile.addEventListener("mouseover", (event) => {
+  tile.addEventListener("mouseover", () => {
     console.log("Line 9 on");
     ui.mouse = true;
     tile.querySelector("p").setAttribute("data-mouseover", true);
@@ -15,12 +15,11 @@ tutorialTile.forEach((tile) => {
 });
 
 tutorialTile.forEach((tile) => {
-    tile.addEventListener("mouseleave", (event) => {
+    tile.addEventListener("mouseleave", () => {
     ui.mouse = false;
     tile.querySelector("p").removeAttribute("data-mouseover");
   });
 });
-
 
 const startTutorial = () => {
     firstTutorialTile.querySelector("p").innerText = letters[Math.floor(Math.random()*letters.length)];
@@ -30,13 +29,11 @@ const startTutorial = () => {
 
 startTutorial();
 
-
-
 tutorialTile.forEach((tile) => {
   document.addEventListener("keypress", (event) => {
         if (ui.mouse === true && String.fromCharCode(event.keyCode).toUpperCase() ===
             tile.querySelector("p").innerText &&
-            tile.querySelector("p").getAttribute("data-mouseover") == "true"
+            tile.querySelector("p").getAttribute("data-mouseover") === "true"
             ) {
                 tutorialTile.forEach(word =>{ word.classList.toggle("bg-white");
                 word.querySelector("p").innerText = letters[Math.floor(Math.random()*letters.length)]})

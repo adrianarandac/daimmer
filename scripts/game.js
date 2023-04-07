@@ -1,15 +1,14 @@
-var daimmerHighestScore = localStorage.getItem(DAIMMER_HIGHEST_SCORE);
-var DAIMMER_HIGHEST_SCORE = "daimmerHighestScore"
-var scoreString = localStorage.getItem(DAIMMER_HIGHEST_SCORE)
+const DAIMMER_HIGHEST_SCORE = "daimmerHighestScore";
+let daimmerHighestScore = localStorage.getItem(DAIMMER_HIGHEST_SCORE);
+const scoreString = localStorage.getItem(DAIMMER_HIGHEST_SCORE);
 if (scoreString == null) daimmerHighestScore = 0;
 else {daimmerHighestScore = parseInt(scoreString)}
 
-var printedScore = 0
-
+let printedScore = 0;
 
 class Game {
   constructor() {
-      this.pointsCounter = 0,
+      this.pointsCounter = 0;
       this.letters = ["Q", "W", "E", "A", "S", "D"];
       this.tiles = null;
       this.blackTiles = [];
@@ -26,7 +25,6 @@ class Game {
     };
 
   start() {
-      // GET RANDOM INDEX TO SHUFFLE CARDS TO BLACK
     this.tiles = Array.from(document.getElementsByClassName("tile"));
 
     let randomNumbers = [];
@@ -35,7 +33,6 @@ class Game {
       randNumb = Math.floor(Math.random() * this.tiles.length);
      if(!randomNumbers.includes(randNumb))randomNumbers.push(randNumb);
     }
-    
 
     let slicedNumbs = randomNumbers.slice(0,4).sort((a,b) => b - a);
     //ADD SLICED TO BLACK ARRAY
@@ -65,20 +62,22 @@ class Game {
   };
 
   startCountdown(){
-
     document.querySelector(".play-button").remove
     let countdownText = document.querySelector(".timer");
 
     this.intervalId = setInterval(() => {
       this.countdown--;
       countdownText.innerText = `TIMER: ${this.countdown}`;
-      if (this.countdown === 0){clearInterval(this.intervalId), this.failSound.play(); buildGameOver(); this.killEventListener}
+      if (this.countdown === 0){
+        clearInterval(this.intervalId)
+        this.failSound.play(); buildGameOver();
+        this.killEventListener();
+      }
     }, 1000);
     
     document.querySelector(".grid-container").removeChild(document.querySelector(".play-button"));
     this.addKeyboardOn();
     this.addMouseOn();
-
   };
 
   addMouseOn() {

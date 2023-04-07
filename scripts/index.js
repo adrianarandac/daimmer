@@ -7,26 +7,27 @@ let playerName = "";
 
 const buildSplashScreen = () => {
     buildDom(`
-        <div class="introScreen">
-            <h1>DAIMMER</h1>
-            <div class="input-name">
-                <input class="inputBox" type="text" placeholder="what's your name?" required>
-            </div>
-            <p class="pressEnterText">press Enter</p>
-        </div> 
-          `);
+    <div class="introScreen">
+      <h1>DAIMMER</h1>
+      <div class="input-name">
+        <input class="inputBox" type="text" placeholder="what's your name?" required>
+      </div>
+      <p class="pressEnterText">press Enter</p>
+      <div class="footer">by <a href="https://adrianaranda.com" target="_blank">Adrian Aranda</a>.</div>
+
+    </div> 
+  `);
 
     const playerNameInput = document.querySelector(".inputBox");
-    playerNameInput.addEventListener("keypress", function(event) {
-
-      if (event.keyCode === 13) {
-          backgroundMusic.play();
-          playerName = playerNameInput.value
+    playerNameInput.addEventListener("keypress", (event) => {
+        if (event.keyCode === 13) {
+            backgroundMusic.play();
+            playerName = playerNameInput.value;
             event.preventDefault();
-            buildTutorialScreen();
+            buildTutorialScreen(playerName);
         }
     });
-  };
+};
   
 let buildTutorialScreen = () => {
     buildDom(`
@@ -55,6 +56,8 @@ let buildTutorialScreen = () => {
                 </div>
             </div>
           <button class="lets-play-button">Let's play!</button>
+            <div class="footer">by <a href="https://adrianaranda.com" target="_blank">Adrian Aranda</a>.</div>
+
         </div>`
     );
 
@@ -79,37 +82,37 @@ let buildGameScreen = () => {
         </svg>
         <div class="score">POINTS: 0</div>
         <div class="highest">RECORD: ${daimmerHighestScore}</div>
-        <div class="timer">TIMER: 20</div>
+        <div class="timer">TIMER: 30</div>
     </div>
     <section class="grid-container">
-        <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
-        <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
-        <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
-        <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
-        <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
-        <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
-        <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
-        <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
-        <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
-        <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
-        <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
-        <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
-        <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
-        <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
-        <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
-        <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
+        <div class="board">
+            <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
+            <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
+            <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
+            <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
+            <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
+            <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
+            <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
+            <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
+            <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
+            <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
+            <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
+            <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
+            <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
+            <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
+            <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>
+            <div class="tile bg-black bg-white"><p class="tile-text disable-select"></p></div>  
+        </div>
         <button class="play-button">PLAY</button>
     </section>
+            <div class="footer">by <a href="https://adrianaranda.com" target="_blank">Adrian Aranda</a>.</div>
+
+
     `);
 
-    if (typeof game == undefined){
-              let game = new Game();
-              game.start();}
-    else {delete game;
-          let game = new Game();
-          game.start()} 
-
-  };
+    let game = new Game();
+    game.start();
+}
 
 let buildGameOver = () => {
     buildDom(`
@@ -125,6 +128,7 @@ let buildGameOver = () => {
         <h2 class="final-score">Your score was: ${printedScore}</h2>
         <button class="try-again">Do you think you can do better?</button>
       </div>
+            <div class="footer">by <a href="https://adrianaranda.com" target="_blank">Adrian Aranda</a>.</div>
           `);
 
     let restartButton = document.querySelector("button");
